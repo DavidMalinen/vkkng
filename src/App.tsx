@@ -5,12 +5,10 @@ import { PostProcessing } from 'components/dithering/PostProcessing';
 import { EnvironmentWrapper } from 'components/dithering/Environment';
 import * as THREE from 'three';
 import { useControls, folder, Leva } from 'leva';
-import { Chalice } from 'components/models/Chalice';
+// import { Chalice } from 'components/models/Chalice';
+import { HermesStaff } from 'components/models/HermesStaff';
 import 'styles/main.css';
 
-/**
- * Main application component
- */
 export default function App(): ReactElement {
   const { bgColor } = useControls({
     'Scene Settings': folder({
@@ -55,10 +53,8 @@ export default function App(): ReactElement {
 
   // Set up resize handling
   useEffect(() => {
-    // Initial check
     handleResize();
     
-    // Add listener
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [handleResize]);
@@ -84,7 +80,8 @@ export default function App(): ReactElement {
             speed={2}
           >
             <Center scale={modelScale} position={[0, .8, 0]} rotation={[0, -Math.PI / 3.5, -0.4]}>
-              <Chalice />
+              {/* <Chalice /> */}
+              <HermesStaff />
             </Center>
           </Float>
         </group>
@@ -96,10 +93,6 @@ export default function App(): ReactElement {
   )
 }
 
-/**
- * Post-processing effects wrapper component
- * Memoized to prevent unnecessary re-renders
- */
 const Effects: React.FC = memo(() => (
   <PostProcessing />
 ))
